@@ -21,6 +21,5 @@ protected:
   MatchArea myArea;
   Gtk::Frame d_frame;
 private:
-  Control c;
   const int fieldX,fieldY;
 };

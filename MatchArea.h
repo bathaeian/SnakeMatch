@@ -9,13 +9,14 @@ class MatchArea : public Gtk::DrawingArea
 public:
   MatchArea(Control &);
   virtual ~MatchArea();
+  Control& getControl();
 
 protected:
   //Override default signal handler:
   bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
   bool on_timeout();
 private:
-  void drawSnake(int , int,const Cairo::RefPtr<Cairo::Context>&);
+  void drawSnake(int , int,const Cairo::RefPtr<Cairo::Context>&, int=0);
   const int fieldX,fieldY;
   Control c;
 };

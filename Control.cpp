@@ -27,11 +27,12 @@ std::string Control::getBoard()const{
     std::string s="";
     for(int k=0;k<Board::getMaxY();k++){
         for(int j=0;j<Board::getMaxX();j++){
+            bool p=vs[0]->isHere(j,k);
             bool t=false;
-            for(auto i=vs.begin();i!=vs.end();i++){
+            for(auto i=vs.begin()+1;i!=vs.end();i++){
                 if((**i).isHere(j,k)){t=true;}
             }
-            if(t){s=s+"O";}else {s=s+" ";}
+            if(p){s=s+"G";}else if(t){s=s+"B";}else {s=s+" ";}
         }
         s=s+"\n";
     }
@@ -45,7 +46,8 @@ int Control::haveWinner()const{
   return winner;
 }
 void Control::moveSnakes(){
-  for(auto i=vs.begin()+1;i!=vs.end();i++){
+  if(haveWinner()>=0){return;}
+  for(auto i=(vs.begin()+1);i!=vs.end();i++){
       Snake &nearest=findNearest(**i);
       (*i)->move(nearest);
   }

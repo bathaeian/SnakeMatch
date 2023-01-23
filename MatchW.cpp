@@ -10,10 +10,10 @@
 
 MatchW::MatchW(Control& c1)
 : c_Box(Gtk::ORIENTATION_HORIZONTAL, 5)
-, c(c1),fieldX(400),fieldY(400),myArea(c1)
+, fieldX(800),fieldY(400),myArea(c1)
 {
   set_title("Snake Match");
-  set_default_size(500,500);
+  set_default_size(900,500);
   set_border_width(5);
   d_frame.set_label("Field");
   myArea.set_size_request(fieldX,fieldY);
@@ -35,6 +35,6 @@ bool MatchW::on_key_press_event(GdkEventKey* key_event)
     case 65361:d=Dir::Left;break;
     default:return true;
   }
-  c.updateKey(d);
+  myArea.getControl().updateKey(d);
   return true;
 }
